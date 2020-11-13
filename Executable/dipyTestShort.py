@@ -7,8 +7,9 @@ Import libraries
 
 import tkinter as tk
 from tkinter import Label , PhotoImage, StringVar, Entry
+import os
 
-
+print('starting working directory: ', os.getcwd())
 
 # =============================================================================
 # Create GUI

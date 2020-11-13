@@ -500,7 +500,6 @@ else:
 # Temp import libraries
 # =============================================================================
 
-    
 import random
 import csv
 import tkinter as tk

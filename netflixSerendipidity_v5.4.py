@@ -119,6 +119,10 @@ def loadMoviesOnNetflix():
         titleText.place(x = 190, y = 600)
         sourceText.place(x = 190, y = 620)
         
+        print('selected movie: ', selectedMovieTitle)
+        print('selected movie link: ', selectedMovieLink)
+
+        
     return (selectedMovieTitle, selectedMovieLink, selectedMovieSource)
     
 
@@ -627,11 +631,11 @@ updateListBtn.pack()
 updateListBtn.place(x = 600, y = 80)
 
 
-photo = PhotoImage(file = r"/Users/Seansmac/Desktop/Dev/NetflixSerendipidity/netflixLogo.png") 
+netflixLogoImage = PhotoImage(file = r"/Users/Seansmac/Desktop/Dev/NetflixSerendipidity/netflixLogo.png") 
    
 
 
-openLinkButton = tk.Button(frame, text = "Click to watch movie!", image = photo, padx= 10, pady= 5, fg="midnight blue",
+openLinkButton = tk.Button(frame, text = "Click to watch movie!", image = netflixLogoImage, padx= 10, pady= 5, fg="midnight blue",
                      bg = "white", command = launchMovie, compound='top')
         
 openLinkButton.pack(pady= 40)

@@ -130,7 +130,7 @@ def launchMovie():
          print('launching ',selectedMovieLink)
        # movieLink = loadMoviesOnNetflix()
        # selectedMovieLink = movieLink[1][0]
-         webbrowser.open("https://www.netflix.com/"+selectedMovieLink, new=1)
+         webbrowser.open("https://www.netflix.com"+selectedMovieLink, new=1)
       
         #return selectedMovieTitle, selectedMovieLink, selectedMovieSource
 
