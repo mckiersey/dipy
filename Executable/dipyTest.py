@@ -18,28 +18,8 @@ import webbrowser
 import os
 import ast
 from functools import partial
-import platform
 
-'''
-operatingSysCheck = platform.system()
-#https://stackoverflow.com/a/44067654
-# define the package dir as the dir that this script is in
-pkg_dir = os.path.abspath(os.path.dirname(argv[0]))
-
-if operatingSysCheck = 'Darwin':
-    operatingSys = 'mac'
-else:
-    operatingSys = 'windows'
-    
-    
-
-def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
-    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-    return os.path.join(base_path, relative_path)
-
-resource_path()
-
+print('starting working directory: ', os.getcwd())
 
 driverPath = '/Users/Seansmac/Desktop/Dev/NetflixSerendipidity/chromedriver' # How does this work in prod?
 os.chdir("/Users/Seansmac/Desktop/Dev/NetflixSerendipidity") # How to do in prod?
@@ -91,7 +71,6 @@ def titleCleaner(title):
     cleanTitle5 = cleanTitle4.replace("[15]","")
     cleanTitle = cleanTitle5.replace("#","")
     return cleanTitle
-'''
 
 '''
 def validateLogin(username, password):
@@ -99,7 +78,7 @@ def validateLogin(username, password):
 	print("password entered :", password.get())
 	return
 '''
-'''
+
 def loadMoviesOnNetflix():
      # Read from file      
     with open('DipyMoviesOnNetflix.csv', mode='r') as infile:
@@ -141,6 +120,10 @@ def loadMoviesOnNetflix():
         titleText.place(x = 190, y = 600)
         sourceText.place(x = 190, y = 620)
         
+        print('selected movie: ', selectedMovieTitle)
+        print('selected movie link: ', selectedMovieLink)
+
+        
     return (selectedMovieTitle, selectedMovieLink, selectedMovieSource)
     
 
@@ -152,7 +135,7 @@ def launchMovie():
          print('launching ',selectedMovieLink)
        # movieLink = loadMoviesOnNetflix()
        # selectedMovieLink = movieLink[1][0]
-         webbrowser.open("https://www.netflix.com/"+selectedMovieLink, new=1)
+         webbrowser.open("https://www.netflix.com"+selectedMovieLink, new=1)
       
         #return selectedMovieTitle, selectedMovieLink, selectedMovieSource
 
@@ -201,17 +184,16 @@ def updateMovieList(username, password):
     loginExplained.destroy()
     updateText.destroy()
     updateTextString.set('this is a test')
-    '''
+  
 
-    #Print progress text
-'''
+    # Print progress text
     updateText = Label(root, text = updateTextString,
                        #('Launching Chrome...')
                        font =( 
             'Verdana', 15), bg= 'black', fg = 'white')
     updateText.place(x = 500, y = 300)
-    '''
-'''
+
+
     Testtext = tk.StringVar()
     Testtext.set('')
     lab = tk.Label(root, textvariable=Testtext, fg='blue', bg= 'white')
@@ -223,16 +205,13 @@ def updateMovieList(username, password):
     Sundance winners
     """
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    '''
     # Print progress text
-'''
     updateText.destroy()
 
     updateText = Label(root, text = ('Scanning for Sundance awarded films...'), font =( 
             'Verdana', 15), bg= 'black', fg = 'white')
     updateText.place(x = 500, y = 300)
-    '''
-'''
+    
     
     sourceTargetSundance = 'https://en.wikipedia.org/wiki/List_of_Sundance_Film_Festival_award_winners'
     driver.get(sourceTargetSundance)
@@ -276,16 +255,16 @@ def updateMovieList(username, password):
     Palme d'or winners
     """
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    '''
+    #driver = webdriver.Chrome(executable_path= driverPath)  
+    
     # Print progress text
-'''
     updateText.destroy()
 
     updateText = Label(root, text = ("Scanning for Palme d'Or winners..."), font =( 
             'Verdana', 15), bg= 'black', fg = 'white')
     updateText.place(x = 500, y = 300)
-    '''
-'''
+    
+
     sourceTargetCannes = 'https://en.wikipedia.org/wiki/Palme_d%27Or'
     driver.get(sourceTargetCannes)
     htmlResults = driver.page_source
@@ -331,15 +310,14 @@ def updateMovieList(username, password):
     Roger Ebert
     """
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    '''
+    #driver = webdriver.Chrome(executable_path= driverPath)  
+    
     # Print progress text
-'''
     updateText.destroy()
     updateText = Label(root, text = ("Scanning for Five Star Robert Ebert reviewed films..."), font =( 
             'Verdana', 15), bg= 'black', fg = 'white')
     updateText.place(x = 500, y = 300)
-    '''
-'''
+    
     sourceTargetRobertEbert = 'https://www.rogerebert.com/great-movies'
     driver.get(sourceTargetRobertEbert)
     
@@ -423,15 +401,13 @@ def updateMovieList(username, password):
     Remove duplicated moveis (keys)
     """
     # It appears dictionaries do not permit duplicated keys and overwrite with new key values
-    '''
+    
     # Print progress text
-'''
     updateText.destroy()
     updateText = Label(root, text = ("Saving scanned films..."), font =( 
             'Verdana', 15), bg= 'black', fg = 'white')
     updateText.place(x = 500, y = 300)
-    '''
-'''
+    
     print(os.getcwd())
     os.chdir("/Users/Seansmac/Desktop/Dev/NetflixSerendipidity") # How to do in prod?
     print(os.getcwd())
@@ -454,19 +430,17 @@ def updateMovieList(username, password):
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     
     # Fill in credentials here
-    #myEmail = 'seanmckiernan01@gmail.com'
     myEmail = email
     myPassword = password
     #myProfile = 'Sean'
-'''
+    
     # Print progress text
-'''
     updatingText = Label(root, text = ("Cross check with Netflix library..."), font =( 
             'Verdana', 15), bg= 'black', fg = 'white')
     updatingText.place(x = 600, y = 100)
-    '''
-'''
     
+    
+    driver = webdriver.Chrome(executable_path= driverPath)  
     target = 'https://www.netflix.com/ie/login'
     driver.get(target)
     
@@ -476,20 +450,6 @@ def updateMovieList(username, password):
     password.send_keys(myPassword)
     elem = driver.find_element_by_name("password")
     elem.send_keys(Keys.RETURN)
-    
-    # sign in error handling
-    signInCheck = driver.page_source
-    soup = BeautifulSoup(signInCheck, 'html.parser')
-    #print(soup.prettify())
-    
-    if soup.body.findAll(text='Sign In'):
-        print('login fail')
-        updateText.destroy()
-        updateText = Label(root, text = ("Unsuccessful login- \n check your email/passowrd"), font =( 
-                'Verdana', 15), bg= 'black', fg = 'white')
-        updateText.place(x = 500, y = 300)
-    else:
-        print('login success!')
     
     time.sleep(0.5)
     driver.find_element_by_class_name("profile-name").click()
@@ -556,15 +516,14 @@ def updateMovieList(username, password):
 
         # Key/ Value list pair defined
         moviesOnNetflix[matchedMovieTitle] = moviesOnNetflixValueList
-'''
+   
     # Print progress text
-'''
     updateText.destroy()
     updateText = Label(root, text = ("Saving films that are on Netflix..."), font =( 
             'Verdana', 15), bg= 'black', fg = 'white')
     updateText.place(x = 500, y = 300)
-    '''
-'''
+    
+    
   # Write to file
     with open('DipyMoviesOnNetflix.csv', 'w') as f:  
         w = csv.writer(f)
@@ -576,16 +535,15 @@ def updateMovieList(username, password):
 
     print('Dipy movies on your Netflix data exported to: ', os.getcwd())
     print('Number of matched movies on Netflix: ', len(positiveHitTitleList))
-    '''
+
      # Print progress text
-'''
     updateText.destroy()
     updateText = Label(root, text = ("Done!"), font =( 
             'Verdana', 15), bg= 'black', fg = 'white')
     updateText.place(x = 500, y = 300)
-    '''
-'''
-'''
+
+
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -649,37 +607,37 @@ passwordEntry = Entry(root, textvariable=password, show='*')
 
 
 # Login button
-#updateMovieList = partial(updateMovieList, username, password)
-loginButton = tk.Button(root, text="Netflix Login"), #command=updateMovieList) 
+updateMovieList = partial(updateMovieList, username, password)
+loginButton = tk.Button(root, text="Netflix Login", command=updateMovieList) 
 
 
 usernameLabel.forget()
 usernameEntry.forget()
 passwordLabel.forget()
 passwordEntry.forget()
-#loginButton.forget()
+loginButton.forget()
 
 
 # Select a movie
 
-selectMovieBtn = tk.Button(root, text = 'Select a movie',  bg= 'white')#,command =  loadMoviesOnNetflix)
-                
+selectMovieBtn = tk.Button(root, text = 'Select a movie', command =  loadMoviesOnNetflix,
+                 bg= 'white')
 
 selectMovieBtn.pack()
 selectMovieBtn.place(x = 100, y = 80)
 
-updateListBtn = tk.Button(root, text ='Refresh movie list',bg= 'white')#, command = showCredentialsEntry)
-                          
+updateListBtn = tk.Button(root, text ='Refresh movie list', command = showCredentialsEntry,
+                          bg= 'white')
 updateListBtn.pack()
 updateListBtn.place(x = 600, y = 80)
 
 
-photo = PhotoImage(file = r"/Users/Seansmac/Desktop/Dev/NetflixSerendipidity/netflixLogo.png") 
+netflixLogoImage = PhotoImage(file = r"/Users/Seansmac/Desktop/Dev/NetflixSerendipidity/netflixLogo.png") 
    
 
 
-openLinkButton = tk.Button(frame, text = "Click to watch movie!", image = photo, padx= 10, pady= 5, fg="midnight blue",
-                     bg = "white", compound='top')# command = launchMovie)
+openLinkButton = tk.Button(frame, text = "Click to watch movie!", image = netflixLogoImage, padx= 10, pady= 5, fg="midnight blue",
+                     bg = "white", command = launchMovie, compound='top')
         
 openLinkButton.pack(pady= 40)
 openLinkButton.place(y = 100, x = 200)
