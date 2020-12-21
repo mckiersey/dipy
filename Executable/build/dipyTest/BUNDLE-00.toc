@@ -1,3 +1,0 @@
-([('dipyTest',
-   '/Users/Seansmac/Desktop/Dev/NetflixSerendipidity/Executable/dist/dipyTest',
-   'EXECUTABLE')],)

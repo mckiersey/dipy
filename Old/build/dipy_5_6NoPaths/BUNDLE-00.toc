@@ -1,0 +1,3 @@
+([('dipy_5_6NoPaths',
+   '/Users/Seansmac/Desktop/Dev/NetflixSerendipidity/dist/dipy_5_6NoPaths',
+   'EXECUTABLE')],)
