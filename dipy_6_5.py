@@ -35,7 +35,7 @@ else:
     print('The bundle dircectory is: ', bundle_dir)
 
 driver_path = Path.cwd() / bundle_dir / "chromedriver/chromedriver"
-scanned_movie_list_path = Path.cwd() / bundle_dir / "scannedMoviesList.csv"
+scanned_movie_list_path = Path.cwd() / bundle_dir / "scannedMoviesListNew.csv"
 hit_movie_list_path = Path.cwd() / bundle_dir / "DipyMoviesOnNetflix.csv"
 netflix_logo_path = Path.cwd() / bundle_dir / "netflixLogo.png"
 
@@ -205,7 +205,7 @@ def updateMovieList(username, password):
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         
         try:
-            #sourceTargetSundance = 'https://en.wikipedia.org/wiki/List_of_Sundance_Film_Festival_award_winners'
+            sourceTargetSundance = 'https://en.wikipedia.org/wiki/List_of_Sundance_Film_Festival_award_winners'
             driver.get(sourceTargetSundance)
     
 
@@ -352,10 +352,8 @@ def updateMovieList(username, password):
             
                                                     
             html = driver.find_element_by_tag_name('html')
-            if mode == 'dev':
-                ScrollIterations = 60 #to optimise at a later point.
-            else:
-                ScrollIterations = 600 #to optimise at a later point.
+         
+            ScrollIterations = 600 #to optimise at a later point.
 
             for scroll in range(ScrollIterations):
                 html.send_keys(Keys.DOWN)
@@ -422,12 +420,13 @@ def updateMovieList(username, password):
         Export Movie list
         """
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        
-            
+       
         # Write to file
-        with open(scanned_movie_list_path, 'w') as f:  
+        print('saving scanned movies to: ', scanned_movie_list_path)
+        with open(scanned_movie_list_path, 'w',  encoding='utf8') as f:  
             w = csv.writer(f)
             w.writerows(DipyDataDict.items())
+    
         
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         """
@@ -552,14 +551,12 @@ def updateMovieList(username, password):
             except:
                 print('no text to destroy')
                 pass
-    
-            updateText = Label(root, text = ("Opps! Your Netflix username or password seems wrong. \n" + "Maybe have another look & try it again."), font =( 
-                'Verdana', 15), bg= 'black', fg = 'white')
+            updateText = Label(root, text = (e), font =('Verdana', 15), bg= 'black', fg = 'white')
             updateText.place(x = 190, y = 600)
             print("Exception 5")
 
             
-    except:
+    except Exception as e:
         try:
             titleText.destroy()
             sourceText.destroy()
@@ -567,8 +564,7 @@ def updateMovieList(username, password):
         except:
             print('no text to destroy')
             pass
-        updateText = Label(root, text = ("Opps! Your Netflix username or password seems wrong. \n" + "Maybe have another look & try it again."), font =( 
-        'Verdana', 15), bg= 'black', fg = 'white')
+        updateText = Label(root, text = (e), font =('Verdana', 15), bg= 'black', fg = 'white')
         updateText.place(x = 190, y = 600)   
         print("Exception 6")
 

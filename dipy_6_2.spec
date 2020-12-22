@@ -5,8 +5,8 @@ block_cipher = None
 
 a = Analysis(['dipy_6_2.py'],
              pathex=['/Users/Seansmac/Desktop/Dev/NetflixSerendipidity'],
-             binaries=[('chromedriver', 'chromedriver')],
-             datas=[('bundleData', '.')],
+             binaries=[],
+             datas=[('netflixLogo.png', '.')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],

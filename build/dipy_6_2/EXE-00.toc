@@ -40,7 +40,7 @@
  [],
  False,
  False,
- 1606692265,
+ 1608643848,
  [('runw',
    '/Users/Seansmac/anaconda3/lib/python3.6/site-packages/PyInstaller/bootloader/Darwin-64bit/runw',
    'EXECUTABLE')])
